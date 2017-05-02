@@ -1,0 +1,17 @@
+name: NekoCraftCore
+description: Meow
+author: NekoGirl678
+main: neko\catcore\main
+version: 4.1.3
+api: [2.0.0,3.0.0]
+commands:
+ setwelcomemessage:
+  description: "Set the server's join message!"
+  permission: catcraft.command.setjoinmessage
+permissions:
+ setwelcomemessage:
+  default: op
+   children:
+    catcraft.command.setjoinmessage:
+     default: op
+     description: "Set the server's join message."
