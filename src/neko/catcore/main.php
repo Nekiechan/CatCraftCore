@@ -85,11 +85,18 @@
 
 namespace neko\catcore;
 use pocketmine\plugin\PluginBase;
+use pocketmine\command\Command;
+use pocketmine\command\CommandSender;
+use pocketmine\Player;
+use pocketmine\utils\Config;
+use pocketmine\utils\TextFormat;
 
+private $config;
 
 class Main extends PluginBase{
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
+     $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
   }
   public function onEnable(){
     $this->getLogger()->info("[CatCore enabled]");
@@ -97,4 +104,22 @@ class Main extends PluginBase{
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
   }
+  public function onJoin(PlayerJoinEvent $event){
+   $player = $event->getPlayer();
+   $name = $player->getName();
+   $message
+  }
+}
+
+class nekoMsg {
+ public $message = $this->plugin->getConfig()->get("joinmsg")
+ public setMessage(Player $player, $message, $string){
+   if($player->hasPermission("catcore.setjoinmessage")){
+      $this->config->set("joinmsg",  $message);
+   }
+ }
+ public getMessage(Player $player, $message, $string){
+  $string = $this->config->get("joinmsg");
+   return $string;
+ }
 }
