@@ -123,3 +123,20 @@ class nekoMsg {
    return $string;
  }
 }
+ public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+        switch($command->getName()) {
+            case "setwelcomemessage":
+                if($args[1] !== null){
+                  $x = implode('', $args);
+                 $this->nekoMsg->setMessage($sender, $x, $string);
+                  
+                }
+                return true;
+            case "example2":
+                if (count($args) == 0 ){
+                    return false;
+                }
+                var_dump($args); // do stuff
+                return true;
+        }
+    }
