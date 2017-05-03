@@ -8,6 +8,7 @@ commands:
  setwelcomemessage:
   description: "Set the server's join message!"
   permission: catcraft.command.setjoinmessage
+  usage: "/setwelcomemessage <message>"
 permissions:
  setwelcomemessage:
   default: op
