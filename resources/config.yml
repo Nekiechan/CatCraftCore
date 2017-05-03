@@ -1,4 +1,6 @@
 ---
 #Join Message
 joinmsg: "Welcome to NekoCraft!"
+#Staff List
+staff:[]
 ...
