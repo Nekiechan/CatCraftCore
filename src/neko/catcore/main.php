@@ -90,6 +90,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
+use pocketmine\event\TranslationContainer;
+use pocketmine\Server;
 
 private $config;
 
@@ -107,7 +109,8 @@ class Main extends PluginBase{
   public function onJoin(PlayerJoinEvent $event){
    $player = $event->getPlayer();
    $name = $player->getName();
-   $message
+   // ToDo $sender->getServer()->broadcastMessage("Welcome " . $name . ", " . $nekoMsg->getMessage());
+   Server::getInstance()->broadcastMessage($this->PlayerRespawnEvent->getPlayer()->getDisplayName() . $nekoMsg->getMessage());
   }
 }
 
@@ -128,11 +131,11 @@ class nekoMsg {
             case "setwelcomemessage":
                 if($args[1] !== null){
                   $x = implode('', $args);
-                 $this->nekoMsg->setMessage($sender, $x, $string);
-                  
+                  $this->nekoMsg->setMessage($sender, $x, $string);
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $nekoMsg->getMessage());
                 }
                 return true;
-            case "example2":
+            case "Meowinfo":
                 if (count($args) == 0 ){
                     return false;
                 }
