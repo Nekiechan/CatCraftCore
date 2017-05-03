@@ -114,7 +114,7 @@ class Main extends PluginBase implements Listener{
    $player = $event->getPlayer();
    $name = $player->getName();
    // ToDo $sender->getServer()->broadcastMessage("Welcome " . $name . ", " . $nekoMsg->getMessage());
-   Server::getInstance()->broadcastMessage($this->PlayerRespawnEvent->getPlayer()->getDisplayName() . $nekoMsg->getMessage());
+   Server::getInstance()->broadcastMessage($this->PlayerJoinEvent->getPlayer()->getDisplayName() . $nekoMsg->getMessage());
   }
 }
 
