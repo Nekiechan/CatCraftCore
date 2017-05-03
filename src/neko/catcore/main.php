@@ -104,6 +104,7 @@ class Main extends PluginBase implements Listener{
     $this->getLogger()->info("[CatCore enabled]");
 	  $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new BroadcastPluginTask($this), 120);
+	   		@mkdir($this->getDataFolder());
 	  		$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
   }
   public function onDisable(){
@@ -113,7 +114,7 @@ class Main extends PluginBase implements Listener{
    $player = $event->getPlayer();
    $name = $player->getName();
    // ToDo $sender->getServer()->broadcastMessage("Welcome " . $name . ", " . $nekoMsg->getMessage());
-   Server::getInstance()->broadcastMessage($this->PlayerRespawnEvent->getPlayer()->getDisplayName() . $nekoMsg->getMessage());
+   Server::getInstance()->broadcastMessage($this->PlayerRespawnEvent->getPlayer()->getDisplayName() . $nekoMsg->getMessage($player));
   }
 }
 
@@ -124,9 +125,8 @@ class nekoMsg {
      $string = $this->config->set("joinmsg", $string);
    }
  }
- public $getMessage(Player $player, $string){
-  $string = $this->config->get("joinmsg");
-   return $string;
+ public $getMessage(Player $player){
+    return $this->config->get("joinmsg");
  }
 }
 
