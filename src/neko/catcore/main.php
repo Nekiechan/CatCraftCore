@@ -114,18 +114,16 @@ class Main extends PluginBase implements Listener{
    $player = $event->getPlayer();
    $name = $player->getName();
    // ToDo $sender->getServer()->broadcastMessage("Welcome " . $name . ", " . $nekoMsg->getMessage());
-   Server::getInstance()->broadcastMessage($this->PlayerRespawnEvent->getPlayer()->getDisplayName() . $nekoMsg->getMessage($player));
+   Server::getInstance()->broadcastMessage($this->PlayerRespawnEvent->getPlayer()->getDisplayName() . $nekoMsg->getMessage());
   }
 }
 
 class nekoMsg {
  public $message = $this->plugin->getConfig()->get("joinmsg");
- public $setMessage(Player $player, $string){
-   if($player->hasPermission("catcore.setjoinmessage")){
+ public $setMessage($string){
      $string = $this->config->set("joinmsg", $string);
-   }
  }
- public $getMessage(Player $player){
+ public $getMessage(){
     return $this->config->get("joinmsg");
  }
 }
