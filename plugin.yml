@@ -22,6 +22,10 @@ commands:
   description: Set the servers join message
   usage: "Usage: /setwelcomemessage <msg>"
   permission: catcore.command.setwelcomemessage
+ Suko:
+  description: Special thanks to
+  usage: "Usage: /Suko"
+  permission: catcore.command.suko
 permissions:
  catcore.command.cathelp:
   description: "Allows user to use NekoCraft help"
@@ -32,6 +36,15 @@ permissions:
  catcore.command.staff:
   description: "Allows user to use NekoCraft Stafflist"
   default: true
- catcore.command.setwelcomemessage
+ catcore.command.setwelcomemessage:
   description: "Allows user to use NekoCraft Set welcome message"
+  default: op
+ catcore.command.suko:
+  description: "Allows user to find out a really good person"
+  default: true
+ catcore.command.*:
+  description: "Allows user to use all NekoCraft's commands"
+  default: op
+ catcore.*:
+  description: "Allows user to use all of NekoCraft's features"
   default: op
