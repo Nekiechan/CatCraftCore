@@ -119,12 +119,12 @@ class Main extends PluginBase implements Listener{
 
 class nekoMsg {
  public $message = $this->plugin->getConfig()->get("joinmsg");
- public setMessage(Player $player, $message, $string){
+ public setMessage(Player $player, $message){
    if($player->hasPermission("catcore.setjoinmessage")){
       $this->config->set("joinmsg",  $message);
    }
  }
- public getMessage(Player $player, $message, $string){
+ public getMessage(Player $player, $string){
   $string = $this->config->get("joinmsg");
    return $string;
  }
