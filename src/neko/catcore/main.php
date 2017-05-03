@@ -119,9 +119,9 @@ class Main extends PluginBase implements Listener{
 
 class nekoMsg {
  public $message = $this->plugin->getConfig()->get("joinmsg");
- public setMessage(Player $player, $message){
+ public setMessage(Player $player,String $msg){
    if($player->hasPermission("catcore.setjoinmessage")){
-      $this->config->set("joinmsg",  $message);
+      $this->config->set("joinmsg",  $msg);
    }
  }
  public getMessage(Player $player, $string){
@@ -132,7 +132,7 @@ class nekoMsg {
 
 class nekoStaff {
  public $staff = $this->plugin->getConfig()->get("staff"); 
- public setStaff($user){
+ public setStaff(String $user){
   $this->plugin->Config()->set("staff",$user); 
  }
  public getStaff($number){
