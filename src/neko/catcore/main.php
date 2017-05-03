@@ -93,7 +93,7 @@ use pocketmine\utils\TextFormat;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 
-private $config;
+
 
 class Main extends PluginBase{
   public function onLoad(){
