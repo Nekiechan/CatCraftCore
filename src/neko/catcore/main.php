@@ -120,8 +120,8 @@ class Main extends PluginBase implements Listener{
 
 class nekoMsg {
  public $message = $this->plugin->getConfig()->get("joinmsg");
- public $setMessage($string){
-     $string = $this->config->set("joinmsg", $string);
+ public $setMessage(String $msg){
+     $this->config->set("joinmsg", $msg);
  }
  public $getMessage(){
     return $this->config->get("joinmsg");
