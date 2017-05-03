@@ -92,16 +92,19 @@ use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
+use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerRespawnEvent;
 
 
-
-class Main extends PluginBase{
+class Main extends PluginBase implements Listener{
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
-     $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
   }
   public function onEnable(){
     $this->getLogger()->info("[CatCore enabled]");
+	  $this->getServer()->getPluginManager()->registerEvents($this, $this);
+		$this->getServer()->getScheduler()->scheduleRepeatingTask(new BroadcastPluginTask($this), 120);
+	  		$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
   }
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
