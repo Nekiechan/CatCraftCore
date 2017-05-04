@@ -120,19 +120,19 @@ class Main extends PluginBase implements Listener{
 }
 
 class nekoMsg {
- public $message = $config()->get("joinmsg");
+ public $message = $this->config()->get("joinmsg");
  public $setMessage(String $msg){
-     $config->set("joinmsg", $msg);
+     $this->config->set("joinmsg", $msg);
  }
  public $getMessage(){
-    return $config->get("joinmsg");
+    return $this->config->get("joinmsg");
  }
 }
 
 class nekoStaff {
- public $staff = $config()->get("staff"); 
+ public $staff = $this->config()->get("staff"); 
  public $setStaff(String $user){
-  $user = $config()->set("staff",$user); 
+  $user = $this->config()->set("staff",$user); 
  }
  public $getStaff($number){
   return true; 
