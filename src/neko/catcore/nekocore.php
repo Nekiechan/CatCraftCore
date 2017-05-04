@@ -155,7 +155,7 @@ if(count($args) == null){
 if($args[0]=="add"){
 $sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[1] . " §r§7To the Staff list!");
 array_push($staff, $args[1]);
-$this->config["staff"]=$staff
+$this->config["staff"] = $staff;
 return true;
 }
 if($args[0]=="help"){
