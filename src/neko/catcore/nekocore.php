@@ -98,6 +98,9 @@ use pocketmine\event\player\PlayerJoinEvent;
 
 
 class nekocore extends PluginBase implements Listener{
+
+public congig;
+	
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
   }
