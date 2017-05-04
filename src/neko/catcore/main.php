@@ -115,11 +115,11 @@ class Main extends PluginBase implements Listener{
    $player = $event->getPlayer();
    $name = $player->getName();
    // ToDo $sender->getServer()->broadcastMessage("Welcome " . $name . ", " . $nekoMsg->getMessage());
-   Server::getInstance()->broadcastMessage($this->PlayerJoinEvent->getPlayer()->getDisplayName() . $nekoMsg->getMessage());
+   Server::getInstance()->broadcastMessage($this->PlayerJoinEvent->getPlayer()->getDisplayName() . $nekoMsg()->getMessage());
   }
 }
 
-public function nekoMsg {
+public function nekoMsg(){
  public $message = $this->config()->get("joinmsg");
 //TODO public $setMessage(String $msg){
 //TODO     $this->config->set("joinmsg", $msg);
@@ -129,7 +129,7 @@ public function nekoMsg {
  }
 }
 
-public function nekoStaff {
+public function nekoStaff() {
  public $staff = $this->config()->get("staff"); 
 //TODO public $setStaff(String $user){
 //TODO  $user = $this->config()->set("staff",$user); 
@@ -144,7 +144,7 @@ public function nekoStaff {
                 if($args[1] !== null){
                   $x = implode('', $args);
                   $this->config->set("joinmsg", $x);
-                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $nekoMsg->getMessage());
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $nekoMsg()->getMessage());
                 }
                 return true;
             case "Meowinfo":
