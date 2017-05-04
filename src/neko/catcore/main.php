@@ -117,7 +117,6 @@ class Main extends PluginBase implements Listener{
    // ToDo $sender->getServer()->broadcastMessage("Welcome " . $name . ", " . $nekoMsg->getMessage());
    Server::getInstance()->broadcastMessage($this->PlayerJoinEvent->getPlayer()->getDisplayName() . $this->config()->get("joinmsg"));
   }
-}
 
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
@@ -181,3 +180,4 @@ return true;
                 return true;
         }
     }
+}
