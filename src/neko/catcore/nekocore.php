@@ -105,7 +105,6 @@ public $staff=array("Username");
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
     
-    $this->config->reload();
   }
   public function onEnable(){
     $this->getLogger()->info("[CatCore enabled]");
