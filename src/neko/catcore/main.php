@@ -95,6 +95,7 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 
+public config;
 
 class Main extends PluginBase implements Listener{
   public function onLoad(){
@@ -121,17 +122,17 @@ class Main extends PluginBase implements Listener{
 class nekoMsg {
  public $message = $this->plugin->Config()->get("joinmsg");
  public $setMessage(String $msg){
-     $this->config->set("joinmsg", $msg);
+     $config->set("joinmsg", $msg);
  }
  public $getMessage(){
-    return $this->config->get("joinmsg");
+    return $config->get("joinmsg");
  }
 }
 
 class nekoStaff {
- public $staff = $this->plugin->Config()->get("staff"); 
+ public $staff = $config()->get("staff"); 
  public $setStaff(String $user){
-  $user = $this->plugin->Config()->set("staff",$user); 
+  $user = $config()->set("staff",$user); 
  }
  public $getStaff($number){
   return true; 
