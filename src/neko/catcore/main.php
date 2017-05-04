@@ -95,7 +95,7 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 
-public config;
+
 
 class Main extends PluginBase implements Listener{
   public function onLoad(){
