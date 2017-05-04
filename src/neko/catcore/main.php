@@ -125,7 +125,7 @@ function nekoMsg(){
 //TODO     $this->config->set("joinmsg", $msg);
 //TODO }
  $getMessage(){
-   $message = $this->config->get("joinmsg");
+   $message = $this->config->get("joinmsg")
     return $message;
  }
 }
