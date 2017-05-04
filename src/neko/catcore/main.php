@@ -119,7 +119,7 @@ class Main extends PluginBase implements Listener{
   }
 }
 
-public function nekoMsg(){
+function nekoMsg(){
  public $message = $this->config()->get("joinmsg");
 //TODO public $setMessage(String $msg){
 //TODO     $this->config->set("joinmsg", $msg);
@@ -129,7 +129,7 @@ public function nekoMsg(){
  }
 }
 
-public function nekoStaff() {
+function nekoStaff() {
  public $staff = $this->config()->get("staff"); 
 //TODO public $setStaff(String $user){
 //TODO  $user = $this->config()->set("staff",$user); 
