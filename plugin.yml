@@ -1,5 +1,5 @@
 name: NekoCraftCore
-main: neko\catcore\main
+main: neko\catcore\nekocore
 version: 4.1.77356
 api: [2.0.0, 3.0.0, 3.0.1, 3.1.0, 3.0.0-ALPHA1]
 load: POSTWORLD
