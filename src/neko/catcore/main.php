@@ -97,7 +97,7 @@ use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 
 
-class Main extends PluginBase implements Listener{
+class nekocore extends PluginBase implements Listener{
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
   }
