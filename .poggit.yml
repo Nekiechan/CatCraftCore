@@ -4,4 +4,5 @@ branches:
 projects:
   CatCraftCore:
     path: ""
+icon: images/icon.png
 ...
