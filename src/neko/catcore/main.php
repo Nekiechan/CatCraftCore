@@ -119,7 +119,7 @@ class Main extends PluginBase implements Listener{
 }
 
 class nekoMsg {
- public $message = $this->plugin->getConfig()->get("joinmsg");
+ public $message = $this->plugin->Config()->get("joinmsg");
  public $setMessage(String $msg){
      $this->config->set("joinmsg", $msg);
  }
@@ -129,7 +129,7 @@ class nekoMsg {
 }
 
 class nekoStaff {
- public $staff = $this->plugin->getConfig()->get("staff"); 
+ public $staff = $this->plugin->Config()->get("staff"); 
  public $setStaff(String $user){
   $user = $this->plugin->Config()->set("staff",$user); 
  }
