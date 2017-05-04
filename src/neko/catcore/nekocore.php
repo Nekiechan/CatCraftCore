@@ -119,7 +119,7 @@ public $config;
   }
  
 public function onSpawn(PlayerRespawnEvent $event){
-		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config()->get("joinmsg"));
+		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["joinmsg"]);
 }
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
@@ -127,7 +127,7 @@ public function onSpawn(PlayerRespawnEvent $event){
                 if($args[1] !== null){
                   $x = implode('', $args);
                   $this->config->set("joinmsg", $x);
-                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $this->config()->get("joinmsg"));
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $this->config["joinmsg"]);
                 }
                 return true;
             case "Meowinfo":
@@ -171,7 +171,7 @@ $sender->sendMessage("§7-------------=§cHelp§7=-------------");
 return true;
 }
 if($args[0]=="list"){
-$sender->sendMessage("§9[§cStaffy§9]:§7 Staff: " . $this->config->get("staff"));
+$sender->sendMessage("§9[§cStaffy§9]:§7 Staff: " . $this->config[staff"]);
 return true;
 }
 if($args[0]=="remove"){
