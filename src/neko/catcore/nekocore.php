@@ -100,6 +100,7 @@ use pocketmine\event\player\PlayerJoinEvent;
 class nekocore extends PluginBase implements Listener{
 
 public $config;
+public $staff=array("Username");
 	
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
@@ -111,7 +112,7 @@ public $config;
 	   		@mkdir($this->getDataFolder());
 	  		$this->config =  (new Config($this->getDataFolder()."config.yml", Config::YAML, array(
             "joinmsg" => "'Welcome to §l§9NekoCraft! §r§fHave fun and be sure to read the rules!'",
-            "staff" => array("Staff:" => "Username"))))->getAll();
+            "staff" => $staff)))->getAll();
   }
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
@@ -123,7 +124,7 @@ public function onSpawn(PlayerRespawnEvent $event){
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
 		case "setwelcomemessage":
-                  $this->config["joinmsg"]= implode('', $args);
+                  $this->config["joinmsg"] = implode(' ', $args);
                   $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . implode('', $args));
                 return true;
             case "Meowinfo":
@@ -153,7 +154,8 @@ if(count($args) == null){
 					}
 if($args[0]=="add"){
 $sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[1] . " §r§7To the Staff list!");
-array_push($this->config["staff"], $args[1]);
+array_push($staff, $args[1]);
+$this->config["staff"]=$staff
 return true;
 }
 if($args[0]=="help"){
