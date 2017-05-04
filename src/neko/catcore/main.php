@@ -115,31 +115,17 @@ class Main extends PluginBase implements Listener{
    $player = $event->getPlayer();
    $name = $player->getName();
    // ToDo $sender->getServer()->broadcastMessage("Welcome " . $name . ", " . $nekoMsg->getMessage());
-   Server::getInstance()->broadcastMessage($this->PlayerJoinEvent->getPlayer()->getDisplayName() . $nekoMsg()->getMessage);
+   Server::getInstance()->broadcastMessage($this->PlayerJoinEvent->getPlayer()->getDisplayName() . $this->config()->get("joinmsg"));
   }
 }
 
-function nekoMsg(){
- $message = $this->config()->get("joinmsg");
-//TODO public $setMessage(String $msg){
-//TODO     $this->config->set("joinmsg", $msg);
-//TODO }
- $getMessage = $message;
-}
-
-function nekoStaff() {
- $staff = $this->config()->get("staff"); 
-//TODO public $setStaff(String $user){
-//TODO  $user = $this->config()->set("staff",$user); 
-//TODO }
-}
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
             case "setwelcomemessage":
                 if($args[1] !== null){
                   $x = implode('', $args);
                   $this->config->set("joinmsg", $x);
-                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $nekoMsg()->getMessage);
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $this->config()->get("joinmsg"));
                 }
                 return true;
             case "Meowinfo":
