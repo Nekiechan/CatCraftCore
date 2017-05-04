@@ -106,7 +106,10 @@ class Main extends PluginBase implements Listener{
 	  $this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new BroadcastPluginTask($this), 120);
 	   		@mkdir($this->getDataFolder());
-	  		$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+	  		$this->config =  (new Config($this->getDataFolder()."config.yml", Config::YAML, array(
+            "joinmsg" => "Welcome to §l§9NekoCraft! §r§fHave fun and be sure to read the rules!",
+            "staff" => "[]"
+        )))->getAll();
   }
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
