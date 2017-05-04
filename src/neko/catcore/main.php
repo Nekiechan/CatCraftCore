@@ -121,9 +121,9 @@ class Main extends PluginBase implements Listener{
 
 class nekoMsg {
  public $message = $this->config()->get("joinmsg");
- public $setMessage(String $msg){
-     $this->config->set("joinmsg", $msg);
- }
+//TODO public $setMessage(String $msg){
+//TODO     $this->config->set("joinmsg", $msg);
+//TODO }
  public $getMessage(){
     return $this->config->get("joinmsg");
  }
@@ -131,9 +131,9 @@ class nekoMsg {
 
 class nekoStaff {
  public $staff = $this->config()->get("staff"); 
- public $setStaff(String $user){
-  $user = $this->config()->set("staff",$user); 
- }
+//TODO public $setStaff(String $user){
+//TODO  $user = $this->config()->set("staff",$user); 
+//TODO }
  public $getStaff($number){
   return true; 
  }
@@ -143,7 +143,7 @@ class nekoStaff {
             case "setwelcomemessage":
                 if($args[1] !== null){
                   $x = implode('', $args);
-                  $this->nekoMsg->setMessage($sender, $x, $string);
+                  $this->config->set("joinmsg", $x);
                   $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $nekoMsg->getMessage());
                 }
                 return true;
@@ -174,7 +174,7 @@ if(count($args) == null){
 					}
 if($args[0]=="add"){
 $sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[1] . " §r§7To the Staff list!");
-$this->config->set("staff",  $args[1]);
+$this->config->set("staff", $args[1]);
 return true;
 }
 if($args[0]=="help"){
