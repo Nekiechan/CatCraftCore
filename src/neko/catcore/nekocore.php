@@ -111,8 +111,7 @@ public $config;
 	   		@mkdir($this->getDataFolder());
 	  		$this->config =  (new Config($this->getDataFolder()."config.yml", Config::YAML, array(
             "joinmsg" => "'Welcome to §l§9NekoCraft! §r§fHave fun and be sure to read the rules!'",
-            "staff" => array("Staff:" => "Username");
-        )))->getAll();
+            "staff" => array("Staff:" => "Username"))))->getAll();
   }
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
