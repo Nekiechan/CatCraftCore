@@ -123,12 +123,10 @@ public function onSpawn(PlayerRespawnEvent $event){
 }
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
-            case "setwelcomemessage":
-                if($args[1] !== null){
+		case "setwelcomemessage":
                   $x = implode('', $args);
-                  $this->config->set("joinmsg", $x);
-                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $this->config["joinmsg"]);
-                }
+                  $this->config["joinmsg"]=$x
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $x);
                 return true;
             case "Meowinfo":
                 if (count($args) == 0 ){
