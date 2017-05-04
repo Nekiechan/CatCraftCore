@@ -114,13 +114,10 @@ class nekocore extends PluginBase implements Listener{
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
   }
-  public function onJoin(PlayerJoinEvent $event){
-   $player = $event->getPlayer();
-   $name = $player->getName();
-   // ToDo $sender->getServer()->broadcastMessage("Welcome " . $name . ", " . $nekoMsg->getMessage());
-   Server::getInstance()->broadcastMessage($this->PlayerJoinEvent->getPlayer()->getDisplayName() . $this->config()->get("joinmsg"));
-  }
-
+ 
+public function onSpawn(PlayerRespawnEvent $event){
+		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config()->get("joinmsg"));
+}
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
             case "setwelcomemessage":
