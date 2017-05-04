@@ -104,6 +104,8 @@ public $staff=array("Username");
 	
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
+    
+    $this->config->reload();
   }
   public function onEnable(){
     $this->getLogger()->info("[CatCore enabled]");
@@ -116,6 +118,7 @@ public $staff=array("Username");
   }
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
+	  $this->config->save();
   }
  
 public function onSpawn(PlayerRespawnEvent $event){
@@ -124,8 +127,8 @@ public function onSpawn(PlayerRespawnEvent $event){
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
 		case "setwelcomemessage":
-                  $this->config["joinmsg"] = implode(' ', $args);
-                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . implode('', $args));
+                  $this->config["joinmsg"] = $args;
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $args);
                 return true;
             case "Meowinfo":
                 if (count($args) == 0 ){
@@ -154,8 +157,8 @@ if(count($args) == null){
 					}
 if($args[0]=="add"){
 $sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[1] . " §r§7To the Staff list!");
-array_push($staff, $args[1]);
-$this->config["staff"] = $staff;
+
+$this->config["staff"] = $args[1];
 return true;
 }
 if($args[0]=="help"){
