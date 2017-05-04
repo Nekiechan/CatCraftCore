@@ -171,7 +171,7 @@ $sender->sendMessage("§7-------------=§cHelp§7=-------------");
 return true;
 }
 if($args[0]=="list"){
-$sender->sendMessage("§9[§cStaffy§9]:§7 Staff: " . $this->config[staff"]);
+$sender->sendMessage("§9[§cStaffy§9]:§7 Staff: " . $this->config["staff"]);
 return true;
 }
 if($args[0]=="remove"){
