@@ -130,9 +130,40 @@ public function onSpawn(PlayerRespawnEvent $event){
                   $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $args);
                 return true;
                 case "facepalm":
-Server::getInstance()->broadcastMessage("§aFacepalms!");
+Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aFacePalms!×");
 return true;
-			
+		case "meow":
+Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aMeows!×");
+return true;	
+			case "nya":
+Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aNya Nya!×");
+return true;	
+			case "hiss":
+Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aHisses!×");
+return true;
+			case "purr":
+Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aPurrs!×");
+return true;
+			case "sleep":
+Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aFalls Asleep!×");
+return true;
+			case "grr":
+Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aGrowls!×");
+return true;
+			case "roleplaytools":
+$sender->sendMessage("§l§aShowing §2the §eGeneric §bHouse §9Cat's §dRp §6Tools");
+$sender->sendMessage("§l§e----------------------------------------");
+$sender->sendMessage("§9/meow §l§e==== §fShow your affection for your favorite person!");
+$sender->sendMessage("§9/purr §l§e==== §fUseful when your being pet :P");
+$sender->sendMessage("§9/hiss §l§e==== §fHISSSSSSSSS!!");
+$sender->sendMessage("§9/roleplaytools [page] §l§e==== §fHouseCat Tools!");
+$sender->sendMessage("§9/sleep §l§e==== §fFall asleep");
+$sender->sendMessage("§9/grr §l§e==== §fGrowl!");
+$sender->sendMessage("§9/facepalm §l§e==== §fFacepalm over something!");
+$sender->sendMessage("§9/nya §l§e==== §l§fNya Nya!");
+return true;
+		
+return true;
             case "Meowinfo":
                 if (count($args) == 0 ){
                     return false;
