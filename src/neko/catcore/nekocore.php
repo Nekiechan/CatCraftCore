@@ -95,7 +95,7 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-
+use neko\catcore\CatCoreEvent\ScoreEvent;
 
 class nekocore extends PluginBase implements Listener{
 
