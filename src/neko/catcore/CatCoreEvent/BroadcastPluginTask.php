@@ -1,5 +1,5 @@
 <?php
-namespace neko\catcore;
+namespace neko\catcore\CatCoreEvent;
 use pocketmine\Player;
 use pocketmine\scheduler\PluginTask;
 use pocketmine\Server;
