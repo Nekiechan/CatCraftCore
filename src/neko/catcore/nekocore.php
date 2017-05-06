@@ -137,7 +137,7 @@ public function onSpawn(PlayerRespawnEvent $event){
             //  Thanks to Sukotto_kun for all your kindness ^0^
             //
             case "Suko":
-              $sender->sendMessage("Suko - the best person ive ever met ^~^");
+              $sender->sendMessage("§fSuko - the best person ive ever met ^~^");
             return true;
             case "score":
 		            $sender->sendMessage("§0[§9NekoCraft§0]§f§l Player Score: undefined");
@@ -156,8 +156,8 @@ if(count($args) == null){
 					}
 if($args[0]=="add"){
 $sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[1] . " §r§7To the Staff list!");
-
-$this->config["staff"] = $args[1];
+array_push($staff,implode(', ',$args));
+	$this->config["staff"] = $staff;
 return true;
 }
 if($args[0]=="help"){
