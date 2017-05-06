@@ -3,4 +3,6 @@
 joinmsg: "Welcome to NekoCraft!"
 #Staff List
 staff:[]
+#auto poster (good for advertising)
+auto:[]
 ...
