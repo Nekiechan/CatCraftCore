@@ -129,6 +129,10 @@ public function onSpawn(PlayerRespawnEvent $event){
                   $this->config["joinmsg"] = $args;
                   $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $args);
                 return true;
+                case "facepalm":
+Server::getInstance()->broadcastMessage("§aFacepalms!");
+return true;
+			
             case "Meowinfo":
                 if (count($args) == 0 ){
                     return false;
