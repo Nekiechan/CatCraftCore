@@ -130,25 +130,25 @@ public function onSpawn(PlayerRespawnEvent $event){
                   $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $args);
                 return true;
                 case "facepalm":
-Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aFacePalms!×");
+$sender->getServer()->broadcastMessage("§a×§c"$sender->getName() . " §aFacePalms!×");
 return true;
 		case "meow":
-Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aMeows!×");
+$sender->getServer()->broadcastMessage("§a×§c"$sender->getName() . " §aMeows!×");
 return true;	
 			case "nya":
-Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aNya Nya!×");
+$sender->getServer()->broadcastMessage("§a×§c"$sender->getName() . " §aNya Nya!×");
 return true;	
 			case "hiss":
-Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aHisses!×");
+$sender->getServer()->broadcastMessage("§a×§c"$sender->getName() . " §aHisses!×");
 return true;
 			case "purr":
-Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aPurrs!×");
+$sender->getServer()->broadcastMessage("§a×§c"$sender->getName() . " §aPurrs!×");
 return true;
 			case "sleep":
-Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aFalls Asleep!×");
+$sender->getServer()->broadcastMessage("§a×§c"$sender->getName() . " §aFalls Asleep!×");
 return true;
 			case "grr":
-Server::getInstance()->broadcastMessage("§a×§c"$sender->getName() . " §aGrowls!×");
+$sender->getServer()->broadcastMessage("§a×§c"$sender->getName() . " §aGrowls!×");
 return true;
 			case "roleplaytools":
 $sender->sendMessage("§l§aShowing §2the §eGeneric §bHouse §9Cat's §dRp §6Tools");
