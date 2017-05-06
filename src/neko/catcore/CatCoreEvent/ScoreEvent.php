@@ -1,5 +1,5 @@
 <?php
-namespace neko\catcore\CatCoreEvent\ScoreEvent;
+namespace neko\catcore\CatCoreEvent;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\event\player;
