@@ -1,6 +1,6 @@
 name: NekoCraftCore
 main: neko\catcore\nekocore
-version: Neko413.1424.77356Alpha
+version: Neko5.1424.77356Alpha
 api: [2.0.0, 3.0.0, 3.0.1, 3.1.0, 3.0.0-ALPHA1]
 load: POSTWORLD
 author: NekoGirl678
@@ -10,6 +10,50 @@ commands:
   description: CatCraft Help
   usage: "Usage: /cathelp"
   permission: catcore.command.cathelp
+ roleplaytools:
+  description: RolePlay Tools
+  usage: "Usage: /roleplaytools <page:help:permissions>"
+  permission: catcore.rp.command.roleplaytools
+ sleep:
+  description: Fall Asleep
+  usage: "Usage: /sleep"
+  permission: catcore.rp.command.sleep
+ iam:
+  description: do something
+  usage: "Usage: /iam <message>"
+  permission: catcore.rp.command.iam
+ hiss:
+  description: Hiss like a cat
+  usage: "Usage: /hiss"
+  permission: catcore.rp.command.hiss
+ purr:
+  description: Purr like a cat
+  usage: "Usage: /purr"
+  permission: catcore.rp.command.purr
+ meow:
+  description: Meow like a cat
+  usage: "Usage: /meow"
+  permission: catcore.rp.command.meow
+ nya:
+  description: Nya Nya
+  usage: "Usage: /nya"
+  permission: catcore.rp.command.nya
+ grr:
+  description: GRRRRR
+  usage: "Usage: /grr"
+  permission: catcore.rp.command.grr
+ sneeze:
+  description: Sneeze
+  usage: "Usage: /sneeze"
+  permission: catcore.rp.command.sneeze
+ emoji:
+  description: Emoji
+  usage: "Usage: /emoji <mad:happy:sad:funny:irritated:lovey:sly:sneaky:sick>"
+  permission: catcore.rp.command.emoji
+ facepalm:
+  description: Facepalm over something
+  usage: "Usage: /facepalm"
+  permission: catcore.rp.command.facepalm
  score:
   description: Shows CatCraft User Score
   usage: "Usage: /score"
@@ -27,6 +71,45 @@ commands:
   usage: "Usage: /Suko"
   permission: catcore.command.suko
 permissions:
+ catcore.rp.*:
+  description: "Allows user to use all Roleplay features!"
+  default: op
+ catcore.rp.command.*:
+  decription: "Allows user to use all the Roleplay commands!"
+  default: true
+ catcore.rp.command.facepalm:
+  description: "Allows user to facepalm!"
+  default: true
+ catcore.rp.command.roleplaytools:
+  description: "Allows user to use the rptools command"
+  default: true
+ catcore.rp.command.emoji:
+  description: "Allows user to use Emoji command!"
+  default: true
+ catcore.rp.command.meow:
+  description: "Allows user to use the Meow command!"
+  default: true
+ catcore.rp.command.hiss:
+  description: "Allows user to use the Hiss command!"
+  default: true
+ catcore.rp.command.purr:
+  description: "Allows user to use the Purr command!"
+  default: true
+ catcore.rp.command.sleep:
+  description: "Allows user to use the Sleep command!"
+  default: true
+ catcore.rp.command.iam:
+  description: "Allows user to use the Iam command!"
+  default: true
+ catcore.rp.command.sneeze:
+  description: "Allows user to use the Sneeze command!"
+  default: true
+ catcore.rp.command.nya:
+  description: "Allows user to use the Nya command!"
+  default: true
+ catcore.rp.command.grr:
+  description: "Allows user to use the Grr command!"
+  default: true
  catcore.command.cathelp:
   description: "Allows user to use NekoCraft help"
   default: true
