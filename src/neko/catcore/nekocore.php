@@ -95,7 +95,7 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-use neko\catcore\CatCoreEvent\ScoreEvent;
+##use neko\catcore\CatCoreEvent\ScoreEvent;##
 
 class nekocore extends PluginBase implements Listener{
 
@@ -130,6 +130,15 @@ public function onSpawn(PlayerRespawnEvent $event){
                   $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $args);
                 return true;
                 case "facepalm":
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSneezes!×");
+return true;
+			case "yawn":
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aYawns!×");
+return true;
+			case "hungry":
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aIs Hungry!×");
+return true;
+		case "sneeze":
 $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aFacePalms!×");
 return true;
 		case "meow":
@@ -165,9 +174,7 @@ return true;
 		
 return true;
             case "Meowinfo":
-                if (count($args) == 0 ){
-                    return false;
-                }
+return true;
             //
             //  Thanks to Sukotto_kun for all your kindness ^0^
             //
