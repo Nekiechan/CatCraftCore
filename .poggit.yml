@@ -2,7 +2,7 @@
 branches:
 - master
 projects:
-  CatCraftCore:
+  NekoServerCore:
     path: ""
     icon: images/icon.png
 ...
