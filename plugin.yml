@@ -6,9 +6,9 @@ load: POSTWORLD
 author: NekoGirl678
 description: MeowCraft
 commands:
- Sukottosss:
+ Sukottoss:
   description: Sukos Command he made
-  usage: "Usage: /Sukottosss"
+  usage: "Usage: /Sukottoss"
   permission: catcore.command.*
  yawn:
   description: Yawn
