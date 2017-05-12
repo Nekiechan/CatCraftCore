@@ -131,7 +131,7 @@ public function onSpawn(PlayerRespawnEvent $event){
                 return true;
 case "Sukottoss"
 
-$sender->sendmessage("I Love Taryin~ 4 ever together!!")
+$sender->sendMessage("I Love Taryin~ 4 ever together!!");
 
 return true;
                 case "facepalm":
