@@ -129,8 +129,13 @@ public function onSpawn(PlayerRespawnEvent $event){
                   $this->config["joinmsg"] = $args;
                   $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $args);
                 return true;
+case "Sukotto'ss"
+
+$sender->sendmessage("I Love Taryin~ 4 ever together!!")
+
+return true;
                 case "facepalm":
-$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSneezes!×");
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aFacepalms!×");
 return true;
 			case "yawn":
 $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aYawns!×");
@@ -139,7 +144,7 @@ return true;
 $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aIs Hungry!×");
 return true;
 		case "sneeze":
-$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aFacePalms!×");
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSneezes!×");
 return true;
 		case "meow":
 $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aMeows!×");
