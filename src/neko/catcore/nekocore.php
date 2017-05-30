@@ -100,7 +100,7 @@ use pocketmine\event\player\PlayerJoinEvent;
 class nekocore extends PluginBase implements Listener{
 
 public $config;
-public $staff=array("Username"=>"none")->getAll();
+public $staff=array("Username");
 
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
