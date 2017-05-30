@@ -100,8 +100,8 @@ use pocketmine\event\player\PlayerJoinEvent;
 class nekocore extends PluginBase implements Listener{
 
 public $config;
-public $staff=array("Username");
-	
+public $staff=array("Username"=>"none")->getAll();
+
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
     
@@ -113,21 +113,34 @@ public $staff=array("Username");
 	   		@mkdir($this->getDataFolder());
 	  		$this->config =  (new Config($this->getDataFolder()."config.yml", Config::YAML, array(
             "joinmsg" => "'Welcome to §l§9NekoCraft! §r§fHave fun and be sure to read the rules!'",
-            "staff" => $staff)))->getAll();
+	    "respawnmsg" => "' got Meow'd!'",
+            "staff-owner" => undefined,
+	    "staff-coowner" => undefined,
+	    "staff-admin" => undefined,
+	    "staff-mod" => undefined,
+	    "staff-builder" => undefined,
+	    "staff-vip" => undefined)))->getAll();
   }
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
-	  $this->config->save();
+    $this->config->save();
   }
  
 public function onSpawn(PlayerRespawnEvent $event){
-		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["joinmsg"]);
+		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["respawnmsg"]);
+}
+public function onJoin(PlayerJoinEvent $event){
+		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["joinmsg"]);	
 }
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
 		case "setwelcomemessage":
                   $this->config["joinmsg"] = $args;
                   $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $args);
+                return true;
+		case "setdeathmessage":
+		  $this->config["respawnmsg"] = $args;
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's death message to: " . $args);
                 return true;
 case "Sukottoss":
 
@@ -164,6 +177,11 @@ return true;
 			case "grr":
 $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aGrowls!×");
 return true;
+		case "snuggle":
+			if($args[0]!==null){
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles " . $args[0] . "!×");
+			return true;
+			}
 			case "roleplaytools":
 $sender->sendMessage("§l§aShowing §2the §eGeneric §bHouse §9Cat's §dRp §6Tools");
 $sender->sendMessage("§l§e----------------------------------------");
@@ -193,7 +211,7 @@ return true;
 $sender->sendMessage("§7-------------=§cHelp§7=-------------");
 $sender->sendMessage("§f/staff <help|add|remove|list>");
 $sender->sendMessage("§f/staff help §o§a- Shows Staff help!");
-$sender->sendMessage("§f/staff add <player> §o§a- adds Player to staff!");
+$sender->sendMessage("§f/staff add <type> <player> §o§a- adds Player to staff!");
 $sender->sendMessage("§f/staff remove <player> §o§a- removes a Player from staff!");
 $sender->sendMessage("§f/staff list §o§a- Lists all Players on staff!");
 $sender->sendMessage("§7-------------=§cHelp§7=-------------");
@@ -202,28 +220,96 @@ if(count($args) == null){
 						return true;
 					}
 if($args[0]=="add"){
-$sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[1] . " §r§7To the Staff list!");
-array_push($staff,implode(', ',$args));
-	$this->config["staff"] = $staff;
+	//Owner,CoOwner,Admin,Mod,Builder,VIP
+	if($args[1]=="owner"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[2] . " §r§7as the Owner!");
+$this->config["staff-owner"] = $args[2];
 return true;
+	}
+	if($args[1]=="coowner"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[2] . " §r§7as the Co-Owner!");
+$this->config["staff-coowner"] = $args[2];
+return true;
+	}
+	if($args[1]=="admin"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[2] . " §r§7as the Admin!");
+$this->config["staff-admin"] = $args[2];
+return true;
+	}
+	if($args[1]=="mod"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[2] . " §r§7as the Mod!");
+$this->config["staff-mod"] = $args[2];
+return true;
+	}
+	if($args[1]=="builder"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[2] . " §r§7as the Builder!");
+$this->config["staff-builder"] = $args[2];
+return true;
+	}
+	if($args[1]=="vip"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Added:§l§f " . $args[2] . " §r§7as the VIP!");
+$this->config["staff-vip"] = $args[2];
+return true;
+	}
+	else{
+	$sender->sendMessage("§9[§cStaffy§9]:§7 Do /help Staff for usage!");
+	return true;
+	}
 }
 if($args[0]=="help"){
 $sender->sendMessage("§7-------------=§cHelp§7=-------------");
 $sender->sendMessage("§f/staff <help|add|remove|list>");
 $sender->sendMessage("§f/staff help §o§a- Shows Staff help!");
 $sender->sendMessage("§f/staff add <player> §o§a- adds Player to staff!");
-$sender->sendMessage("§f/staff remove <player> §o§a- removes a Player from staff!");
+$sender->sendMessage("§f/staff remove <type> §o§a- removes a Player from staff!");
 $sender->sendMessage("§f/staff list §o§a- Lists all Players on staff!");
 $sender->sendMessage("§7-------------=§cHelp§7=-------------");
 return true;
 }
 if($args[0]=="list"){
-$sender->sendMessage("§9[§cStaffy§9]:§7 Staff: " . $this->config["staff"]);
+$sender->sendMessage("§9[§cStaffy§9]:§7 Owner: " . $this->config["staff-owner"]);
+$sender->sendMessage("§9[§cStaffy§9]:§7 CoOwner: " . $this->config["staff-coowner"]);
+$sender->sendMessage("§9[§cStaffy§9]:§7 Admin: " . $this->config["staff-admin"]);
+$sender->sendMessage("§9[§cStaffy§9]:§7 Mod: " . $this->config["staff-mod"]);
+$sender->sendMessage("§9[§cStaffy§9]:§7 Builder: " . $this->config["staff-builder"]);
+$sender->sendMessage("§9[§cStaffy§9]:§7 VIP: " . $this->config["staff-vip"]);
 return true;
 }
 if($args[0]=="remove"){
-
- return true;
+if($args[1]=="owner"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Removed the Owner!");
+$this->config["staff-owner"] = undefined;
+return true;
+	}
+	if($args[1]=="coowner"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Removed the Co-Owner!");
+$this->config["staff-coowner"] = undefined;
+return true;
+	}
+	if($args[1]=="admin"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Removed the Admin!");
+$this->config["staff-admin"] = undefined;
+return true;
+	}
+	if($args[1]=="mod"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Removed the Mod!");
+$this->config["staff-mod"] = undefined;
+return true;
+	}
+	if($args[1]=="builder"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Removed the Builder!");
+$this->config["staff-builder"] = undefined;
+return true;
+	}
+	if($args[1]=="vip"){
+$sender->sendMessage("§9[§cStaffy§9]:§7 Removed the VIP!");
+$this->config["staff-vip"] = undefined;
+return true;
+	}
+	else{
+	$sender->sendMessage("§9[§cStaffy§9]:§7 Do /Staff help for usage!");
+	return true;
+	}
 }
 return true;
                 var_dump($args); // do stuff
