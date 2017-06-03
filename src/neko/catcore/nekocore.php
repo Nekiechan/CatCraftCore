@@ -123,7 +123,7 @@ public $staff=array("Username");
   }
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
-    $this->config->save();
+    
   }
  
 public function onSpawn(PlayerRespawnEvent $event){
