@@ -114,12 +114,12 @@ public $staff=array("Username");
 	  		$this->config =  (new Config($this->getDataFolder()."config.yml", Config::YAML, array(
             "joinmsg" => "'Welcome to §l§9NekoCraft! §r§fHave fun and be sure to read the rules!'",
 	    "respawnmsg" => "' got Meow'd!'",
-            "staff-owner" => undefined,
-	    "staff-coowner" => undefined,
-	    "staff-admin" => undefined,
-	    "staff-mod" => undefined,
-	    "staff-builder" => undefined,
-	    "staff-vip" => undefined)))->getAll();
+            "staff-owner" => "none",
+	    "staff-coowner" => "none",
+	    "staff-admin" => "none",
+	    "staff-mod" => "none",
+	    "staff-builder" => "none",
+	    "staff-vip" => "none")))->getAll();
   }
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
