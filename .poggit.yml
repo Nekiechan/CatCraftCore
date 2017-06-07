@@ -1,6 +1,7 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Nekiechan/CatCraftCore
 branches:
 - master
+- Scoreupdate
 projects:
   NekoServerCore:
     path: ""
