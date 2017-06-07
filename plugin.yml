@@ -1,6 +1,6 @@
 name: NekoCraftCore
 main: neko\catcore\nekocore
-version: 5.0.0alpha
+version: 6.0.0alpha
 api: [2.0.0, 3.0.0, 3.0.1, 3.1.0, 3.0.0-ALPHA1,3.0.0-ALPHA5]
 load: POSTWORLD
 author: NekoGirl678
@@ -46,6 +46,26 @@ commands:
   description: Meow like a cat
   usage: "Usage: /meow"
   permission: catcore.rp.command.meow
+ poke:
+  description: Poke People
+  usage: "/poke <Player>"
+  permission: catcore.rp.command.poke
+ setdeathmessage:
+  description: Set the death message
+  usage: "/setdeathmessage <string>"
+  permission: catcore.command.sdm
+ setscore:
+  description: Set the score of a player
+  usage: "/setscore <Player> <amount>"
+  permission: catcore.command.setscore
+ addscore:
+  description: Add the Score to a player
+  usage: "/addscore <Player> <amount>"
+  permission: catcore.command.addscore
+ rmscore:
+  description: Subtracts the score of a Player
+  usage: "/rmscore <Player> <amount>"
+  permission: catcore.command.rmscore
  nya:
   description: Nya Nya
   usage: "Usage: /nya"
@@ -122,17 +142,32 @@ permissions:
  catcore.rp.command.grr:
   description: "Allows user to use the Grr command!"
   default: true
+ catcore.rp.command.poke:
+  description: "Allows user to use the Poke command!"
+  default: true
  catcore.command.cathelp:
   description: "Allows user to use NekoCraft help"
   default: true
  catcore.command.score:
   description: "Allows user to view NekoCraft High Score"
   default: true
+ catcore.command.setscore:
+  description: "Allows user to set a player's score"
+  default: op
+ catcore.command.addscore:
+  description: "Allows user to add a player's score"
+  default: op
+ catcore.command.rmscore:
+  description: "Allows user to subtract a player's score"
+  default: op
  catcore.command.staff:
   description: "Allows user to use NekoCraft Stafflist"
   default: true
  catcore.command.setwelcomemessage:
   description: "Allows user to use NekoCraft Set welcome message"
+  default: op
+ catcore.command.sdm:
+  description: "Allows user to set the death message"
   default: op
  catcore.command.suko:
   description: "Allows user to find out a really good person"
