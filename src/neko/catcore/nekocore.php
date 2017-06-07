@@ -95,6 +95,7 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\evenr\player\PlayerDeathEvent;
 ##use neko\catcore\CatCoreEvent\ScoreEvent;##
 
 class nekocore extends PluginBase implements Listener{
@@ -126,10 +127,15 @@ public $staff=array("Username");
     
   }
  
-public function onSpawn(PlayerRespawnEvent $event){
+public function onDeath(PlayerDeathEvent $event){
 		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["respawnmsg"]);
 }
 public function onJoin(PlayerJoinEvent $event){
+if(isset($this->config[$event->getPlayer()->getName()])){
+}else{
+$this->config[$event->getPlayer()->getName()] = 0;
+}
+	
 		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["joinmsg"]);	
 }
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
@@ -177,11 +183,61 @@ return true;
 			case "grr":
 $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aGrowls!×");
 return true;
+		case "iam":
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . $args[0] . "!×");
+return true;	
 		case "snuggle":
 			if($args[0]!==null){
-			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles " . $args[0] . "!×");
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles §r§c" . $args[0] . "§r§a!×");
 			return true;
 			}
+			case "poke":
+			if($args[0]!==null){
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aPokes §r§c" . $args[0] . "§a!×");
+			return true;
+			}
+case "setscore":
+ if($args[0]!==null){
+  if($args[1]!==NaN){
+   $target = $Server->matchPlayer($args[0]);
+   $amount = $args[1];
+   $this->config[$target] = $amount;
+   $newscore = $this->config[$target];
+   $sender->sendMessage("§l§aSet §r§c" . $target ."'s §l§aScore to §r§c" . $newscore . "§r§l§a!");
+   return true;
+  }
+ $sender->sendMessage("§l§cInvalid arguments!");
+ return true;
+ }
+case "addscore":
+ if($args[0]!==null){
+  if($args[1]!==NaN){
+   $target = $Server->matchPlayer($args[0]);
+   $amount = $args[1];
+   $this->config[$target] + $amount;
+   $newscore = $this->config[$target];
+   $addedscore = $amount;
+   $sender->sendMessage("§l§aAdded §r§c" . $addedscore . "§l§a To §r§c" . $target ."'s §l§aScore making a new score of §r§c" . $newscore . "§r§l§a!");
+   return true;
+  }
+ $sender->sendMessage("§l§cInvalid arguments!");
+ return true;
+ }
+case "rmscore":
+if($args[0]!==null){
+  if($args[1]!==NaN){
+   $target = $Server->matchPlayer($args[0]);
+   $amount = $args[1];
+   $this->config[$target] - $amount;
+   $newscore = $this->config[$target];
+   $minscore = $amount;
+   $sender->sendMessage("§l§aSubtracted §r§c" . $minscore . "§l§a from §r§c" . $target ."'s §l§aScore making a new score of §r§c" . $newscore . "§r§l§a!");
+   return true;
+  }
+ $sender->sendMessage("§l§cInvalid arguments!");
+ return true;
+ }
+
 			case "roleplaytools":
 $sender->sendMessage("§l§aShowing §2the §eGeneric §bHouse §9Cat's §dRp §6Tools");
 $sender->sendMessage("§l§e----------------------------------------");
@@ -205,8 +261,8 @@ return true;
               $sender->sendMessage("§fSuko - the best person ive ever met ^~^");
             return true;
             case "score":
-		            $sender->sendMessage("§0[§9NekoCraft§0]§f§l Player Score: undefined");
-		            return true;
+$sender->sendMessage("§l§aYou have a score of: §c" . $this->config[$sender->getName()] . "§a!");
+			return true;
             case "staff":
 $sender->sendMessage("§7-------------=§cHelp§7=-------------");
 $sender->sendMessage("§f/staff <help|add|remove|list>");
