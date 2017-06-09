@@ -133,6 +133,7 @@ public function onJoin(PlayerJoinEvent $event){
 if(isset($this->config[$event->getPlayer()->getName()])){
 }else{
 $this->config[$event->getPlayer()->getName()] = 0;
+Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  "§l§aWas Added to NekoCraft's Score DataBase!");
 }
 	
 		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["joinmsg"]);	
@@ -183,22 +184,33 @@ return true;
 $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aGrowls!×");
 return true;
 		case "iam":
+			if($args[0]!==null){
 $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . $args[0] . "!×");
-return true;	
+return true;
+}else{
+$sender->sendMessage("§l§cInvalid Syntax!");
+return true;
+			}
 		case "snuggle":
 			if($args[0]!==null){
 			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles §r§c" . $args[0] . "§r§a!×");
 			return true;
+			}else{
+$sender->sendMessage("§l§cInvalid Syntax!");
+return true;
 			}
 			case "poke":
 			if($args[0]!==null){
 			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aPokes §r§c" . $args[0] . "§a!×");
 			return true;
-			}
+			}else{
+$sender->sendMessage("§l§cInvalid Syntax!");
+return true;
+}
 case "setscore":
  if($args[0]!==null){
   if($args[1]!==NaN){
-   $target = $Server->matchPlayer($args[0]);
+   $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] = $amount;
    $newscore = $this->config[$target];
@@ -211,7 +223,7 @@ case "setscore":
 case "addscore":
  if($args[0]!==null){
   if($args[1]!==NaN){
-   $target = $Server->matchPlayer($args[0]);
+   $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] + $amount;
    $newscore = $this->config[$target];
@@ -225,7 +237,7 @@ case "addscore":
 case "rmscore":
 if($args[0]!==null){
   if($args[1]!==NaN){
-   $target = $Server->matchPlayer($args[0]);
+   $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] - $amount;
    $newscore = $this->config[$target];
