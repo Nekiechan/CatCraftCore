@@ -209,7 +209,7 @@ return true;
 }
 case "setscore":
  if($args[0]!==null){
-  if($args[1]!==NaN){
+  if($args[1]!==null){
    $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] = $amount;
@@ -222,7 +222,7 @@ case "setscore":
  }
 case "addscore":
  if($args[0]!==null){
-  if($args[1]!==NaN){
+  if($args[1]!==null){
    $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] + $amount;
@@ -236,7 +236,7 @@ case "addscore":
  }
 case "rmscore":
 if($args[0]!==null){
-  if($args[1]!==NaN){
+  if($args[1]!==null){
    $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] - $amount;
