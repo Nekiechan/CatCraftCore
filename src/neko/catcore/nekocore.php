@@ -94,8 +94,7 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
-use pocketmine\event\player\PlayerJoinEvent;
-use pocketmine\evenr\player\PlayerDeathEvent;
+use pocketmine\event\player\PlayerRespawnEvent;
 ##use neko\catcore\CatCoreEvent\ScoreEvent;##
 
 class nekocore extends PluginBase implements Listener{
@@ -127,7 +126,7 @@ public $staff=array("Username");
     
   }
  
-public function onDeath(PlayerDeathEvent $event){
+public function onSpawn(PlayerRespawnEvent $event){
 		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["respawnmsg"]);
 }
 public function onJoin(PlayerJoinEvent $event){
