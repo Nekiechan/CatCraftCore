@@ -101,7 +101,27 @@ class nekocore extends PluginBase implements Listener{
 
 public $config;
 public $staff=array("Username");
-
+public $playerDefault = array(
+"PlayerName" => 0 //score
+);
+public function addPlayertoDataBase(ScoreEvent $event, $player, $Pscore){
+$this->player = $event->getPlayer()->getName();
+$this->Pscore = $event->getScore($this->player);
+array_push($playerDefault,array(
+$this->player => $this->Pscore));
+}
+public function getPlayerfromDataBase(ScoreEvent $event, $player
+public $playerTop = array(
+"PlaceHolder" => 100 //score
+);
+public $playerDataBase = array(
+"Default" => $playerDefault,
+"Top" => $playerTop
+);
+public $scoring = array(
+"Players" => $playerDataBase["Default"],
+"TopPlayers" => $playerDataBase["Top"]	
+);
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
     
