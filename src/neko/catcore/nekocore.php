@@ -95,40 +95,14 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-//use neko\catcore\Event\ScoreEvent;
+use neko\catcore\Event\ScoreEvent;
 
 class nekocore extends PluginBase implements Listener{
 
 public $config;
 public $PlayerConfig;
 public $staff=array("Username");
-public function PlayerDataBase(Player $player, $score){
-if(isset($PlayerData)){
-    
-}else{
-    define("PlayerData", array(
-    "Name" => $player->getName(),
-    "Score" => $score
-    ));
-}
-   @mkdir($this->getDataFolder() . "/Players/" . $player->getName() . "/");
-   $ScoreDirectory = "/Players/";
-   $PlayerDirectory = $player->getName() . "/";
-   $this->PlayerConfig = new Config($this->getDataFolder() . $ScoreDirectory . $PlayerDirector . "Score.yml", Config::YAML, $PlayerData);
-   $this->PlayerConfig->save();
-}
-public function getDataFromPlayer(){
-   //Returns Player
-   $PlayerName = $this->PlayerConfig["Name"];
-   //Returns Score
-   $PlayerScore = $this->PlayerConfig["Score"];
-}
-public function getScore(){
-  return $this->getDataFromPlayer()->PlayerScore;
-}
-public function getPlayerDataName(){
-  return $this->getDataFromPlayer()->PlayerName;
-}
+
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
     
