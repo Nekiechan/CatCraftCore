@@ -95,14 +95,14 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-use neko\catcore\Event\ScoreEvent;
+//use neko\catcore\Event\ScoreEvent;
 
 class nekocore extends PluginBase implements Listener{
 
 public $config;
 public $PlayerConfig;
 public $staff=array("Username")
-public function PlayerDataBase(Player $player,ScoreEvent $score){
+public function PlayerDataBase(Player $player, $score){
 if(isset($PlayerData)){
     
 }else{
