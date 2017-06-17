@@ -214,7 +214,7 @@ $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aGrow
 return true;
 		case "iam":
 			if($args[0]!==null){
-$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . $args[] . "!×");
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . $args . "!×");
 return true;
 }else{
 $sender->sendMessage("§l§cInvalid Syntax!");
@@ -222,7 +222,7 @@ return true;
 			}
 		case "snuggle":
 			if($args[0]!==null){
-			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles §r§c" . $args[0] . "§r§a!×");
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles §r§c" . $args . "§r§a!×");
 			return true;
 			}else{
 $sender->sendMessage("§l§cInvalid Syntax!");
@@ -230,7 +230,7 @@ return true;
 			}
 			case "poke":
 			if($args[0]!==null){
-			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aPokes §r§c" . $args[0] . "§a!×");
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aPokes §r§c" . $args . "§a!×");
 			return true;
 			}else{
 $sender->sendMessage("§l§cInvalid Syntax!");
