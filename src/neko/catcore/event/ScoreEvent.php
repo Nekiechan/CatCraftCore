@@ -1,56 +1,43 @@
 <?php
 namespace neko\catcore\event;
+
+use neko\catcore\nekocore;
+use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\event\plugin\PluginEvent;
-use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
-use pocketmine\utils\TextFormat;
-use pocketmine\event\TranslationContainer;
-use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerRespawnEvent;
-use pocketmine\event\player\PlayerJoinEvent;
+
 
 class ScoreEvent extends PluginEvent {
     public static $handlerList = null;
-    private $score;
-    private $name;
-    private $plrscore;
-    private $scoreConfig;
-    private $scoreConfigdir;
-    public function __construct($plugin, $score, $name, $plrscore, $scoreConfig, $scoreConfigdir){
+    public PlayerConfig;
+    public function __construct(Player $player, nekocore $plugin,Score $score){
         parent::__construct($plugin);
-        $this->player = $name;
+        $this->player = $player;
+        $this->plugin = $plugin;
         $this->score = $score;
-        $this->scoredir = $scoreConfigdir;
-        $this->scoreConfig = $scoreConfig;
+        $this->PlayerConfig = $PlayerConfig;
     }
-    /**@return Player*/
-    public function getPlayer(){
-        return $this->player;
-    }
-    /**@return int*/
-    public function getScore(){
-        return $this->score;
-    }
-    /**@param int $number*/
-    public function setScore($number){
-        $this->score = $number;
-    }
-    /**@param int $number*/
-    public function addScore($number){
-        if($this->score!==null){
-          $this->score += $number;
-          }else{
-          /** If score is undefined */
-          
-          }
-    }
-    /**@return int*/
-    public function ScoretoPlayer($player, $number){
-        
-    }
-    public function saveScore(){
+    public function PlayerDataBase(Player $player, $score){
+        if(isset($PlayerData)){
     
-    }
+        }else{
+            define("PlayerData", array(
+            "Name" => $player->getName(),
+            "Score" => $score
+            ));
+        }
+        @mkdir($this->getDataFolder() . "/Players/" . $player->getName() . "/");
+        $ScoreDirectory = "/Players/";
+        $PlayerDirectory = $player->getName() . "/";
+        $this->PlayerConfig = new Config($this->getDataFolder() . $ScoreDirectory . $PlayerDirector . "Score.yml", Config::YAML, $PlayerData);
+        $this->PlayerConfig->save();
+        }
+        public function getScore(){
+        return $this->PlayerConfig["Score"];   
+        }
+        public function getPlayerDataName(){
+        return $this->PlayerConfig["Name"];
+        }
 }
