@@ -102,7 +102,7 @@ class nekocore extends PluginBase implements Listener{
 public $config;
 public $PlayerConfig;
 public $staff=array("Username")
-public function PlayerDataBase(Player $player, $score){
+function PlayerDataBase(Player $player, $score){
 if(isset($PlayerData)){
     
 }else{
