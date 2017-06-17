@@ -167,7 +167,7 @@ Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() . 
 	
 		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["joinmsg"]);	
 }
- public function onCommand(Player $player, CommandSender $sender, Command $command, $label, array $args) {
+ public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
 		case "setwelcomemessage":
                   $this->config["joinmsg"] = $args;
@@ -239,7 +239,7 @@ return true;
 case "setscore":
  if($args[0]!==null){
   if($args[1]!==null){
-   $target = $player->getServer()->matchPlayer($args[0]);
+   $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] = $amount;
    $newscore = $this->config[$target];
@@ -252,7 +252,7 @@ case "setscore":
 case "addscore":
  if($args[0]!==null){
   if($args[1]!==null){
-   $target = $player->getServer()->matchPlayer($args[0]);
+   $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] + $amount;
    $newscore = $this->config[$target];
@@ -266,7 +266,7 @@ case "addscore":
 case "rmscore":
 if($args[0]!==null){
   if($args[1]!==null){
-   $target = $player->getServer()->matchPlayer($args[0]);
+   $target = $sender->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] - $amount;
    $newscore = $this->config[$target];
