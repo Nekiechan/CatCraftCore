@@ -100,8 +100,31 @@ use pocketmine\event\player\PlayerJoinEvent;
 class nekocore extends PluginBase implements Listener{
 
 public $config;
-public $staff=array("Username");
-
+public $PlayerConfig;
+public $staff=array("Username")
+public function PlayerDataBase(Player $player, $score){
+    define("PlayerData", array(
+    "Name" => $player->getName(),
+    "Score" => $score
+    ));
+   @mkdir($this->getDataFolder() . "/Players/" . $player->getName() . "/");
+   $ScoreDirectory = "/Players/";
+   $PlayerDirectory = $player->getName() . "/";
+   $this->PlayerConfig = new Config($this->getDataFolder() . $ScoreDirectory . $PlayerDirector . "Score.yml", Config::YAML, $PlayerData);
+   $this->PlayerConfig->save();
+}
+public function getDataFromPlayer(){
+   //Returns Player
+   $PlayerName = $this->PlayerConfig["Name"];
+   //Returns Score
+   $PlayerScore = $this->PlayerConfig["Score"];
+}
+public function getScore(Player $player){
+  return $this->getDataFromPlayer()->PlayerScore;
+}
+public function getPlayerDataName(){
+  return $this->getDataFromPlayer()->PlayerName;
+}
   public function onLoad(){
     $this->getLogger()->info("[CatCore loading]");
     
@@ -121,6 +144,7 @@ public $staff=array("Username");
 	    "staff-builder" => "none",
 	    "staff-vip" => "none")))->getAll();
   }
+
   public function onDisable(){
     $this->getLogger()->info("[CatCore disabled]");
     
@@ -130,15 +154,16 @@ public function onSpawn(PlayerRespawnEvent $event){
 		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["respawnmsg"]);
 }
 public function onJoin(PlayerJoinEvent $event){
-if(isset($this->config[$event->getPlayer()->getName()])){
+if(isset($PlayerData)){
+
 }else{
-$this->config[$event->getPlayer()->getName()] = 0;
+$PlayerDataBase($event->getPlayer()->getName(), 0);
 Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  "§l§aWas Added to NekoCraft's Score DataBase!");
 }
 	
 		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["joinmsg"]);	
 }
- public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+ public function onCommand(Player $player, CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
 		case "setwelcomemessage":
                   $this->config["joinmsg"] = $args;
@@ -185,7 +210,7 @@ $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aGrow
 return true;
 		case "iam":
 			if($args[0]!==null){
-$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . $args[0] . "!×");
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . $args[] . "!×");
 return true;
 }else{
 $sender->sendMessage("§l§cInvalid Syntax!");
@@ -210,7 +235,7 @@ return true;
 case "setscore":
  if($args[0]!==null){
   if($args[1]!==null){
-   $target = $sender->getServer()->matchPlayer($args[0]);
+   $target = $player->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] = $amount;
    $newscore = $this->config[$target];
@@ -223,7 +248,7 @@ case "setscore":
 case "addscore":
  if($args[0]!==null){
   if($args[1]!==null){
-   $target = $sender->getServer()->matchPlayer($args[0]);
+   $target = $player->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] + $amount;
    $newscore = $this->config[$target];
@@ -237,7 +262,7 @@ case "addscore":
 case "rmscore":
 if($args[0]!==null){
   if($args[1]!==null){
-   $target = $sender->getServer()->matchPlayer($args[0]);
+   $target = $player->getServer()->matchPlayer($args[0]);
    $amount = $args[1];
    $this->config[$target] - $amount;
    $newscore = $this->config[$target];
