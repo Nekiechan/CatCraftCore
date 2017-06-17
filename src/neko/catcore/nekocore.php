@@ -100,7 +100,6 @@ use neko\catcore\Event\ScoreEvent;
 class nekocore extends PluginBase implements Listener{
 
 public $config;
-public $PlayerConfig;
 public $staff=array("Username");
 
   public function onLoad(){
@@ -133,7 +132,7 @@ public function onSpawn(PlayerRespawnEvent $event){
 }
 public function onJoin(PlayerJoinEvent $event){
 if(isset($PlayerData)){
-$event->getPlayer()->sendMessage("Welcome Back " . $this->getPlayerDataName());
+$event->getPlayer()->sendMessage("Welcome Back " . $ScoreEvent->getPlayerDataName());
 }else{
 $this->PlayerDataBase($event->getPlayer()->getName(), 0);
 Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  "§l§aWas Added to NekoCraft's Score DataBase!");
