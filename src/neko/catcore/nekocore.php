@@ -95,18 +95,22 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-##use neko\catcore\CatCoreEvent\ScoreEvent;##
+use neko\catcore\Event\ScoreEvent;
 
 class nekocore extends PluginBase implements Listener{
 
 public $config;
 public $PlayerConfig;
 public $staff=array("Username")
-public function PlayerDataBase(Player $player, $score){
+public function PlayerDataBase(Player $player,ScoreEvent $score){
+if(isset($PlayerData)){
+    
+}else{
     define("PlayerData", array(
     "Name" => $player->getName(),
     "Score" => $score
     ));
+}
    @mkdir($this->getDataFolder() . "/Players/" . $player->getName() . "/");
    $ScoreDirectory = "/Players/";
    $PlayerDirectory = $player->getName() . "/";
@@ -119,7 +123,7 @@ public function getDataFromPlayer(){
    //Returns Score
    $PlayerScore = $this->PlayerConfig["Score"];
 }
-public function getScore(Player $player){
+public function getScore(){
   return $this->getDataFromPlayer()->PlayerScore;
 }
 public function getPlayerDataName(){
@@ -135,8 +139,8 @@ public function getPlayerDataName(){
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new BroadcastPluginTask($this), 120);
 	   		@mkdir($this->getDataFolder());
 	  		$this->config =  (new Config($this->getDataFolder()."config.yml", Config::YAML, array(
-            "joinmsg" => "'Welcome to §l§9NekoCraft! §r§fHave fun and be sure to read the rules!'",
-	    "respawnmsg" => "' got Meow'd!'",
+            "joinmsg" => "Welcome to §l§9NekoCraft! §r§fHave fun and be sure to read the rules!",
+	    "respawnmsg" => " got Meow'd!",
             "staff-owner" => "none",
 	    "staff-coowner" => "none",
 	    "staff-admin" => "none",
@@ -155,9 +159,9 @@ public function onSpawn(PlayerRespawnEvent $event){
 }
 public function onJoin(PlayerJoinEvent $event){
 if(isset($PlayerData)){
-
+$event->getPlayer()->sendMessage("Welcome Back " . $this->getPlayerDataName());
 }else{
-$PlayerDataBase($event->getPlayer()->getName(), 0);
+$this->PlayerDataBase($event->getPlayer()->getName(), 0);
 Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  "§l§aWas Added to NekoCraft's Score DataBase!");
 }
 	
