@@ -95,7 +95,7 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-//use neko\catcore\Event\ScoreEvent; TODO
+use neko\catcore\Event\ScoreEvent; 
 
 class nekocore extends PluginBase implements Listener{
 
@@ -126,15 +126,39 @@ public $staff=array("Username");
     $this->getLogger()->info("[CatCore disabled]");
     
   }
- 
+public function replaceTags(Player $player, $string){
+$string = str_replace("{display_name}", $player->getDisplayName(), $string);
+$string = str_replace("{ip}", $player->getAddress(), $string);
+$string = str_replace("{port}", $player->getPort(), $string);
+if($player->getGamemode()==0){
+//Gamemode S
+$gamemode = "Survival";
+}else if($player->getGamemode()==1){
+//Gamemode C
+$gamemode = "Creative";
+}else if($player->getGamemode()==2){
+//Gamemode A
+$gamemode = "Adventure";
+}else if($player->getGamemode()==3){
+//Gamemode SP
+$gamemode = "Spectator";
+}
+$string = str_replace("{gamemode}",$gamemode, $string);
+$string = str_replace("{version}", $player->getServer()->getPocketMineVersion(), $string);
+$string = str_replace("{servername}", $player->getServer()->getName(), $string);
+$string = str_replace("{codename}", $player->getServer()->getCodename(), $string);
+$string = str_replace("{mcpeversion}", $player->getServer()->getVersion(), $string);
+$string = str_replace("{api}", $player->getServer()->getApiVersion(), $string);
+return $string;
+}
 public function onSpawn(PlayerRespawnEvent $event){
 		Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  $this->config["respawnmsg"]);
 }
 public function onJoin(PlayerJoinEvent $event){
 if(isset($PlayerData)){
-$event->getPlayer()->sendMessage("Welcome Back " /*. $ScoreEvent->getPlayerDataName() TODO */ );
+$event->getPlayer()->sendMessage("Welcome Back " . $ScoreEvent->getPlayerDataName());
 }else{
-//$this->PlayerDataBase($event->getPlayer()->getName(), 0); TODO
+$this->PlayerDataBase($event->getPlayer()->getName(), 0);
 Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  "§l§aWas Added to NekoCraft's Score DataBase!");
 }
 	
