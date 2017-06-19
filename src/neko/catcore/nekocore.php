@@ -158,7 +158,7 @@ public function onJoin(PlayerJoinEvent $event){
 if(isset($PlayerData)){
 $event->getPlayer()->sendMessage("Welcome Back " . $ScoreEvent->getPlayerDataName());
 }else{
-$this->PlayerDataBase($event->getPlayer()->getName(), 0);
+//$this->PlayerDataBase($event->getPlayer()->getName(), 0);
 Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  "§l§aWas Added to NekoCraft's Score DataBase!");
 }
 	
