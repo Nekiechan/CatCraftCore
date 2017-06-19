@@ -10,7 +10,8 @@ use pocketmine\utils\Config;
 
 
 class ScoreEvent{
-    public PlayerConfig;
+    public $PlayerConfig;
+    public $score
     public function __construct(Player $player,$score){
         $this->player = $player;
         $this->score = $score;
