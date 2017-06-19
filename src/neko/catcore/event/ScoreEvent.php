@@ -9,13 +9,10 @@ use pocketmine\event\plugin\PluginEvent;
 use pocketmine\utils\Config;
 
 
-class ScoreEvent extends PluginEvent {
-    public static $handlerList = null;
+class ScoreEvent{
     public PlayerConfig;
-    public function __construct(Player $player, nekocore $plugin,Score $score){
-        parent::__construct($plugin);
+    public function __construct(Player $player,$score){
         $this->player = $player;
-        $this->plugin = $plugin;
         $this->score = $score;
         $this->PlayerConfig = $PlayerConfig;
     }
