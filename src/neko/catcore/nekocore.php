@@ -95,7 +95,7 @@ use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-use neko\catcore\Event\ScoreEvent;
+//use neko\catcore\Event\ScoreEvent; TODO
 
 class nekocore extends PluginBase implements Listener{
 
@@ -132,9 +132,9 @@ public function onSpawn(PlayerRespawnEvent $event){
 }
 public function onJoin(PlayerJoinEvent $event){
 if(isset($PlayerData)){
-$event->getPlayer()->sendMessage("Welcome Back " . $ScoreEvent->getPlayerDataName());
+$event->getPlayer()->sendMessage("Welcome Back " /*. $ScoreEvent->getPlayerDataName() TODO */ );
 }else{
-$this->PlayerDataBase($event->getPlayer()->getName(), 0);
+//$this->PlayerDataBase($event->getPlayer()->getName(), 0); TODO
 Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() .  "§l§aWas Added to NekoCraft's Score DataBase!");
 }
 	
@@ -195,7 +195,7 @@ return true;
 			}
 		case "snuggle":
 			if($args[0]!==null){
-			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles §r§c" . $args . "§r§a!×");
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles §r§c" . $sender->getServer()->matchPlayer($args[0]) . "§r§a!×");
 			return true;
 			}else{
 $sender->sendMessage("§l§cInvalid Syntax!");
@@ -203,7 +203,7 @@ return true;
 			}
 			case "poke":
 			if($args[0]!==null){
-			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aPokes §r§c" . $args . "§a!×");
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aPokes §r§c" . $sender->getServer()->matchPlayer($args[0]) . "§a!×");
 			return true;
 			}else{
 $sender->sendMessage("§l§cInvalid Syntax!");
