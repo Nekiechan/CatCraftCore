@@ -167,12 +167,12 @@ Server::getInstance()->broadcastMessage($event->getPlayer()->getDisplayName() . 
  public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch($command->getName()) {
 		case "setwelcomemessage":
-                  $this->config["joinmsg"] = $args;
-                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . $args);
+                  $this->config["joinmsg"] = implode(" ", $args);
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's join message to: " . implode(" ", $args) );
                 return true;
 		case "setdeathmessage":
-		  $this->config["respawnmsg"] = $args;
-                  $sender->sendMessage(TextFormat::GREEN . "Set Server's death message to: " . $args);
+		  $this->config["respawnmsg"] = implode(" ", $args);
+                  $sender->sendMessage(TextFormat::GREEN . "Set Server's death message to: " . implode(" ", $args) );
                 return true;
 case "Sukottoss":
 
@@ -211,7 +211,7 @@ $this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aGrow
 return true;
 		case "iam":
 			if($args[0]!==null){
-$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . $args . "!×");
+$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §a" . implode(" ", $args)  . "!×");
 return true;
 }else{
 $sender->sendMessage("§l§cInvalid Syntax!");
@@ -219,7 +219,13 @@ return true;
 			}
 		case "snuggle":
 			if($args[0]!==null){
-			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles §r§c" . $sender->getServer()->matchPlayer($args[0]) . "§r§a!×");
+			$name = strtolower(array_shift($args));
+			$player = $sender->getServer()->getPlayer($name);
+			if($player instanceof Player){
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aSnuggles §r§c" .  $player->getDisplayName() . "§r§a!×");
+			}else{
+			$sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
+		}
 			return true;
 			}else{
 $sender->sendMessage("§l§cInvalid Syntax!");
@@ -227,7 +233,13 @@ return true;
 			}
 			case "poke":
 			if($args[0]!==null){
-			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() . " §aPokes §r§c" . $sender->getServer()->matchPlayer($args[0]) . "§a!×");
+				$name = strtolower(array_shift($args));
+			$player = $sender->getServer()->getPlayer($name);
+			if($player instanceof Player){
+			$this->getServer()->broadcastMessage("§a×§c" . $sender->getName() .  " §aPokes §r§c"  .  $player->getDisplayName() . "§r§a!×");
+			}else{
+			$sender->sendMessage(new TranslationContainer("commands.generic.player.notFound"));
+		}
 			return true;
 			}else{
 $sender->sendMessage("§l§cInvalid Syntax!");
