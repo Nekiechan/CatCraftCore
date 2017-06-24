@@ -10,7 +10,7 @@ use pocketmine\utils\Config;
 
 
 class ScoreEvent{
-    public $PlayerConfig;
+  /*  public $PlayerConfig;
     public $score;
     public function __construct(Player $player,$score){
         $this->player = $player;
@@ -37,5 +37,5 @@ class ScoreEvent{
         }
         public function getPlayerDataName(){
         return $this->PlayerConfig["Name"];
-        }
+        }*/
 }
